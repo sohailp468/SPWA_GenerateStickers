@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="lib/angular.min.js"></script>
+
+    <script src="js/app.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Angular App Demo</title>
+  </head>
+
+  <!-- 'ng-app' - angular module binding -->
+  <!-- 'ng-controller' - angular controller binding -->
+  <body ng-app="anti_park_spwa" ng-controller="Main as vm">
+
+    <h1>"!!"</h1>
+
+    <!-- binding button click to getData() function in data model -->
+    <button ng-click="vm.getData()">Demo GET Request</button>
+
+    <!-- bound this list to the array containing events in data model -->
+    <ul ng-model="vm.incidents">
+      <li ng-repeat="incident in vm.incidents" >
+        <p>Name: {{incident.id}}</p>
+<!--         <p>Date: {{event.date}}</p>
+ -->        <!-- <p>Postcode: {{event.postcode}}</p> -->
+      </li>
+    </ul>
+
+  </body>
+
+</html>
