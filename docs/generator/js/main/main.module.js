@@ -13,11 +13,5 @@
 					controller: 'mainCtrl as vm',
 					cache: false
                 })
-				.state('search', {
-					url: '/search',
-					templateUrl: 'js/main/search/search.html',
-					controller: 'searchCtrl as vm',
-					cache: false
-                })
 		});
 })();
