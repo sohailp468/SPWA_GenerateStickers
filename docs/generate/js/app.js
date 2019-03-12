@@ -55,7 +55,7 @@
             y = x.elements[0].value;
             var z = parseInt(y);
             var jsonpayload={"num_requested":z};
-            //document.getElementById("test").innerHTML = z;
+            
              //Use $http service to send get request to API and execute different functions depending on whether it is successful or not
             $http.post(vm.endpoint + 'stickers/',JSON.stringify(jsonpayload)).then(
                 function success(response) {
