@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="lib/angular.min.js"></script>
+
+    <script src="js/app.js"></script>
+    <script type="text/javascript" src="lib/qrcode/qrcode.js"></script>
+    <script type="text/javascript" src="lib/qrcode/angular-qrcode.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Angular App Demo</title>
+  </head>
+
+  <!-- 'ng-app' - angular module binding -->
+  <!-- 'ng-controller' - angular controller binding -->
+  <body ng-app="anti_park_spwa" ng-controller="Main as vm">
+
+
+    <h1>Show You Care Park Elsewhere</h1>
+    <h2>Sticker Generator</h2>
+    <!-- <p>we have {{vm.stickers.length}} stickers</p> -->
+    <div>
+      <p>Please enter the number of stickers you would like to generate and download.</p>
+      <p>Number of Stickers:</p>
+    <form id="form1">
+      <input type="number" name="numStickers" value="1">
+        <!-- binding button click to getData() function in data model -->
+      <button ng-click="vm.postStickers()">Generate Stickers</button> <!--POST-->
+    </form></div>
+    <!-- bound this list to the array containing stickers in data model -->
+      <li ng-repeat="sticker in vm.stickers" >
+        <qrcode data="{{sticker.id}}"></qrcode>
+        <p>Name: {{sticker.id}}</p>
+      </li>
+    </ul>
+    <!-- <p id="test"></p> -->
+  </body>
+
+</html>
