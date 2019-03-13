@@ -89,7 +89,7 @@
             var urlParams = new URLSearchParams(window.location.search);
             var uuid=urlParams.get('uuid'); //getus uuid from url
             
-            var responsejson={"has_apologised":True, "sticker_uuid":uuid,"apologyRec":True, "apologyPN":1};
+            var responsejson={"has_apologised":true, "sticker_uuid":uuid,"apologyRec":true, "apologyPN":1};
             //Use $http service to send get request to API and execute different functions depending on whether it is successful or not
             $http.post(vm.endpoint + 'responses/',JSON.stringify(responsejson)).then(
                 function success(response) {
@@ -118,7 +118,7 @@
             var urlParams = new URLSearchParams(window.location.search);
             var uuid=urlParams.get('uuid'); //getus uuid from url
             
-            var responsejson={"has_apologised":True, "sticker_uuid":uuid, "apologyRec":True, "apologyPN":-1};
+            var responsejson={"has_apologised":true, "sticker_uuid":uuid, "apologyRec":true, "apologyPN":-1};
             //Use $http service to send get request to API and execute different functions depending on whether it is successful or not
             $http.post(vm.endpoint + 'responses/',JSON.stringify(responsejson)).then(
                 function success(response) {
