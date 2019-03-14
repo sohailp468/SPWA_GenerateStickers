@@ -3,7 +3,7 @@
     'use strict';
 
     // creates an angular module called  - bound to body through ng-app directive
-    var app = angular.module('anti_park_spwa', [ 'monospaced.qrcode' ]);
+    var app = angular.module('anti_park_spwa', [ 'angular-uuid','monospaced.qrcode' ]);
 
     // creating controller
     app.controller('Main', control);
