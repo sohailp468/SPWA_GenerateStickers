@@ -27,22 +27,14 @@
     <!-- <p>we have {{vm.stickers.length}} stickers</p> -->
     <div ng-show="vm.hasResponded===false">
       <p>Apologise?</p>
-    <form id="form1" >
-      <!-- <input type="number" name="numStickers" value="1"> -->
-        <!-- binding button click to getData() function in data model -->
-      <button ng-click="vm.apologise()">Yes! I'm really sorry!</button> <!--POST-->
-      <button ng-click="vm.refuse()">No, I don't think so!</button> <!--POST-->
-    </form></div>
+      <form id="form1" >
+        <button ng-click="vm.apologise()">Yes! I'm really sorry!</button>
+        <button ng-click="vm.refuse()">No, I don't think so!</button>
+      </form>
+    </div>
     <div ng-show="vm.giveThanks===true">
       <p> Thank you for responding</p>
     </div>
-    <!-- bound this list to the array containing stickers in data model -->
-      <!-- <li ng-repeat="sticker in vm.stickers" >
-        <qrcode data="{{sticker.id}}"></qrcode>
-        <p>Name: {{sticker.id}}</p>
-      </li>
-    </ul> -->
-    <!-- <p id="test"></p> -->
   </body>
 
 </html>
