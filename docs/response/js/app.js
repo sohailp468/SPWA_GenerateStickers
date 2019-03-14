@@ -19,7 +19,8 @@
             stickers: [],
             events: [],
             endpoint: '',
-            hasResponded:false
+            hasResponded:false,
+            giveThanks:false
         });
 
         vm.init = function () {
@@ -96,6 +97,7 @@
                 function success(response) {
                     vm.responses = response.data;
                     vm.hasResponded = true;
+                    vm.giveThanks=true;
                     console.info(response);
                 },
                 function failure(err) {
@@ -126,6 +128,7 @@
                 function success(response) {
                     vm.responses = response.data;
                     vm.hasResponded = true;
+                    vm.giveThanks=true;
                     console.info(response);
                 },
                 function failure(err) {

@@ -33,6 +33,9 @@
       <button ng-click="vm.apologise()">Yes! I'm really sorry!</button> <!--POST-->
       <button ng-click="vm.refuse()">No, I don't think so!</button> <!--POST-->
     </form></div>
+    <div ng-show="vm.giveThanks===true">
+      <p> Thank you for responding</p>
+    </div>
     <!-- bound this list to the array containing stickers in data model -->
       <!-- <li ng-repeat="sticker in vm.stickers" >
         <qrcode data="{{sticker.id}}"></qrcode>
