@@ -25,9 +25,9 @@
     <h1>Show You Care Park Elsewhere</h1>
     <p>You parked without care! Someone is really bummed out :-( </p>
     <!-- <p>we have {{vm.stickers.length}} stickers</p> -->
-    <div>
+    <div ng-show="vm.hasResponded===false">
       <p>Apologise?</p>
-    <form id="form1">
+    <form id="form1" >
       <!-- <input type="number" name="numStickers" value="1"> -->
         <!-- binding button click to getData() function in data model -->
       <button ng-click="vm.apologise()">Yes! I'm really sorry!</button> <!--POST-->
