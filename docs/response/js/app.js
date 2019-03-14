@@ -9,10 +9,10 @@
     app.controller('Main', control);
 
     // Inject the $http service. Need $http to make HTTP requests to the API
-    control.$inject = ['$http'];
+    control.$inject = ['$http', 'uuid'];
 
     // Pass any injected services to the controller constructor function
-    function control($http) {
+    function control($http,uuid) {
 
         var vm = angular.extend(this, {
             title: 'Welcome to the Sticker App',
@@ -80,13 +80,13 @@
         {            
             var z= true; 
             var urlParams = new URLSearchParams(window.location.search);
-            var uuid=urlParams.get('uuid'); //getus uuid from url
+            var sticker_uuid=urlParams.get('uuid'); //getus uuid from url
             
-            var responsejson={"has_apologised":true, "sticker_uuid":uuid,"apologyRec":true, "apologyPN":1};
+            var responsejson={"has_apologised":true, "sticker_uuid":sticker_uuid,"apologyRec":true, "apologyPN":1};
             //Use $http service to send get request to API and execute different functions depending on whether it is successful or not
-            
+
             var responsePayload = {
-                recipient_id: "/topics/" + vm.uuid,
+                recipient_id: "/topics/" + sticker_uuid,
                 message_id: uuid.v4(),
                 payload: JSON.stringify( responsejson )
             };      
@@ -118,13 +118,13 @@
         {
             var z= true; 
             var urlParams = new URLSearchParams(window.location.search);
-            var uuid=urlParams.get('uuid'); //getus uuid from url
+            var sticker_uuid=urlParams.get('uuid'); //getus uuid from url
             
-            var responsejson={"has_apologised":true, "sticker_uuid":uuid, "apologyRec":true, "apologyPN":-1};
+            var responsejson={"has_apologised":true, "sticker_uuid":sticker_uuid, "apologyRec":true, "apologyPN":-1};
             //Use $http service to send get request to API and execute different functions depending on whether it is successful or not
 
             var responsePayload = {
-                recipient_id: "/topics/" + vm.uuid,
+                recipient_id: "/topics/" + sticker_uuid,
                 message_id: uuid.v4(),
                 payload: JSON.stringify( responsejson )
             };
