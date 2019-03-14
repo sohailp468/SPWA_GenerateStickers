@@ -18,7 +18,8 @@
             title: 'Welcome to the Sticker App',
             stickers: [],
             events: [],
-            endpoint: ''
+            endpoint: '',
+            hasResponded:false
         });
 
         vm.init = function () {
@@ -94,6 +95,7 @@
             $http.post(vm.endpoint + 'responses/',JSON.stringify(responsejson)).then(
                 function success(response) {
                     vm.responses = response.data;
+                    vm.hasResponded = true;
                     console.info(response);
                 },
                 function failure(err) {
@@ -123,6 +125,7 @@
             $http.post(vm.endpoint + 'responses/',JSON.stringify(responsejson)).then(
                 function success(response) {
                     vm.responses = response.data;
+                    vm.hasResponded = true;
                     console.info(response);
                 },
                 function failure(err) {
