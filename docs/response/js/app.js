@@ -147,25 +147,25 @@
             )
 
 
-               
+        }    
 
-            vm.sendPayload = function sendPayload( payload ) {
-                const SERVER_ROOT = "https://rescuestationpush.herokuapp.com:443"; // heroku service hides secret
+        vm.sendPayload = function sendPayload( payload ) {
+            const SERVER_ROOT = "https://rescuestationpush.herokuapp.com:443"; // heroku service hides secret
 
-                console.log( " → asked to send this payload:", payload );
+            console.log( " → asked to send this payload:", payload );
           
-                var sendRequest = { method: 'POST',
-                                    url: SERVER_ROOT + '/messages',
-                                    data: JSON.stringify(payload)
-                                   };
+            var sendRequest = { method: 'POST',
+                                   url: SERVER_ROOT + '/messages',
+                                data: JSON.stringify(payload)
+                                  };
           
-                console.log('push.service.sendPayload - using ',sendRequest );
+             console.log('push.service.sendPayload - using ',sendRequest );
           
-                return $http( sendRequest ); // send back a promise
-                };
+            return $http( sendRequest ); // send back a promise
+        };
 
 
-        }
+        
         vm.init();
     }
 
