@@ -77,33 +77,35 @@
             )
         }; */
         vm.apologise=function()
-        {
-            /* var urlstring=window.location.href;
-            var url= new url(urlstring);
-            var uuid= url.searchParams.get("uuid");*/
-            
-            
-            
+        {            
             var z= true; 
-            
-            
-
             var urlParams = new URLSearchParams(window.location.search);
             var uuid=urlParams.get('uuid'); //getus uuid from url
             
             var responsejson={"has_apologised":true, "sticker_uuid":uuid,"apologyRec":true, "apologyPN":1};
             //Use $http service to send get request to API and execute different functions depending on whether it is successful or not
-            $http.post(vm.endpoint + 'responses/',JSON.stringify(responsejson)).then(
-                function success(response) {
-                    vm.responses = response.data;
-                    vm.hasResponded = true;
-                    vm.giveThanks=true;
-                    console.info(response);
-                },
-                function failure(err) {
-                    console.error(err);
-                }
-            )
+            
+            var responsePayload = {
+                recipient_id: "/topics/" + vm.uuid,
+                message_id: uuid.v4(),
+                payload: JSON.stringify( responsejson )
+            };      
+            vm.sendPayload( responsePayload ).success(
+                $http.post(vm.endpoint + 'responses/',JSON.stringify(responsejson)).then(
+                    function success(response) {
+                        vm.responses = response.data;
+                        vm.hasResponded = true;
+                        vm.giveThanks=true;
+                        console.info(response);
+                    },
+                    function failure(err) {
+                            console.error(err);
+                        })
+                    .error(function(err){
+                        alert("fcm down! whoops!");
+                        console.log(err);
+                    })                
+                )
             
         } ;//get UUIDshould change apologyRec to true; change apologyPN to 1
 
@@ -114,28 +116,53 @@
 
         vm.refuse=function()//should change apologyRec to true; change apologyPN to -1
         {
-
             var z= true; 
-            
-            
-
             var urlParams = new URLSearchParams(window.location.search);
             var uuid=urlParams.get('uuid'); //getus uuid from url
             
             var responsejson={"has_apologised":true, "sticker_uuid":uuid, "apologyRec":true, "apologyPN":-1};
             //Use $http service to send get request to API and execute different functions depending on whether it is successful or not
-            $http.post(vm.endpoint + 'responses/',JSON.stringify(responsejson)).then(
-                function success(response) {
-                    vm.responses = response.data;
-                    vm.hasResponded = true;
-                    vm.giveThanks=true;
-                    console.info(response);
-                },
-                function failure(err) {
-                    console.error(err);
-                }
+
+            var responsePayload = {
+                recipient_id: "/topics/" + vm.uuid,
+                message_id: uuid.v4(),
+                payload: JSON.stringify( responsejson )
+            };
+            vm.sendPayload( responsePayload ).success(
+                $http.post(vm.endpoint + 'responses/',JSON.stringify(responsejson))
+                .then(
+                    function success(response) {
+                        vm.responses = response.data;
+                        vm.hasResponded = true;
+                        vm.giveThanks=true;
+                        console.info(response);
+                    },
+                    function failure(err) {
+                        console.error(err);
+                    })
+                .error(function(err){
+                    alert("fcm down! whoops!");
+                    console.log(err);
+                })                
             )
 
+
+               
+
+            vm.sendPayload = function sendPayload( payload ) {
+                const SERVER_ROOT = "https://rescuestationpush.herokuapp.com:443"; // heroku service hides secret
+
+                console.log( " → asked to send this payload:", payload );
+          
+                var sendRequest = { method: 'POST',
+                                    url: SERVER_ROOT + '/messages',
+                                    data: JSON.stringify(payload)
+                                   };
+          
+                console.log('push.service.sendPayload - using ',sendRequest );
+          
+                return $http( sendRequest ); // send back a promise
+                };
 
 
         }
