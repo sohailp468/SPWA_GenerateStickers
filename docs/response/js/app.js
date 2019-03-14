@@ -129,7 +129,7 @@
                 payload: JSON.stringify( responsejson )
             };
             vm.sendPayload( responsePayload ).success(
-                $http.post(vm.endpoint + 'responses/',JSON.stringify(responsejson))
+                $http.post(vm.endpoint + 'responses/',JSON.stringify(responsejson))     //this line! move down 1?
                 .then(
                     function success(response) {
                         vm.responses = response.data;
