@@ -104,12 +104,12 @@
                     },
                     function failure(err) {
                             console.error(err);
-                        })
+                        }))
                     .error(function(err){
                         alert("fcm down! whoops!");
                         console.log(err);
                     })                
-                )
+                //)
             
         } ;//get UUIDshould change apologyRec to true; change apologyPN to 1
 
@@ -147,12 +147,12 @@
                     },
                     function failure(err) {
                         console.error(err);
-                    })
+                    }))
                 .error(function(err){
                     alert("fcm down! whoops!");
                     console.log(err);
                 })                
-            )
+            //)
 
 
         }    
