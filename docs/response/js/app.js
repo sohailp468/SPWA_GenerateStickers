@@ -3,7 +3,7 @@
     'use strict';
 
     // creates an angular module called  - bound to body through ng-app directive
-    var app = angular.module('anti_park_spwa', [ 'angular-uuid','monospaced.qrcode' ]);
+    var app = angular.module('anti_park_spwa', ['angular-uuid', 'monospaced.qrcode']);
 
     // creating controller
     app.controller('Main', control);
@@ -12,15 +12,15 @@
     control.$inject = ['$http', 'uuid'];
 
     // Pass any injected services to the controller constructor function
-    function control($http,uuid) {
+    function control($http, uuid) {
 
         var vm = angular.extend(this, {
             title: 'Welcome to the Sticker App',
             stickers: [],
             events: [],
             endpoint: '',
-            hasResponded:false,
-            giveThanks:false
+            hasResponded: false,
+            giveThanks: false
         });
 
         vm.init = function () {
@@ -76,104 +76,106 @@
                 }
             )
         }; */
-        vm.apologise=function()
-        {            
-            var z= true; 
+        vm.apologise = function () {
+            var z = true;
             var urlParams = new URLSearchParams(window.location.search);
-            var sticker_uuid=urlParams.get('uuid'); //getus uuid from url
-            
-            var responsejson={"has_apologised":true, "sticker_uuid":sticker_uuid,"apologyRec":true, "apologyPN":1};
+            var sticker_uuid = urlParams.get('uuid'); //getus uuid from url
+
+            var responsejson = { "has_apologised": true, "sticker_uuid": sticker_uuid, "apologyRec": true, "apologyPN": 1 };
             //Use $http service to send get request to API and execute different functions depending on whether it is successful or not
 
             var responsePayload = {
                 connection_id: "/topics/" + sticker_uuid,
-                sender_id:uuid.v4(),//maybe change to static uuid
+                sender_id: uuid.v4(),//maybe change to static uuid
                 message_id: uuid.v4(),
                 message_type: 4,
-                sender_role:0,
-                payload: JSON.stringify( responsejson ),
-                payload_format_type:0
-            };      
-            vm.sendPayload( responsePayload ).success(
-                $http.post(vm.endpoint + 'responses/',JSON.stringify(responsejson)).then(
-                    function success(response) {
-                        vm.responses = response.data;
-                        vm.hasResponded = true;
-                        vm.giveThanks=true;
-                        console.info(response);
-                    },
-                    function failure(err) {
-                            console.error(err);
-                        }))
-                    .error(function(err){
-                        alert("fcm down! whoops!");
-                        console.log(err);
-                    })                
-                //)
-            
-        } ;//get UUIDshould change apologyRec to true; change apologyPN to 1
-
-
-
-
-
-
-        vm.refuse=function()//should change apologyRec to true; change apologyPN to -1
-        {
-            var z= true; 
-            var urlParams = new URLSearchParams(window.location.search);
-            var sticker_uuid=urlParams.get('uuid'); //getus uuid from url
-            
-            var responsejson={"has_apologised":true, "sticker_uuid":sticker_uuid, "apologyRec":true, "apologyPN":-1};
-            //Use $http service to send get request to API and execute different functions depending on whether it is successful or not
-
-            var responsePayload = {
-                connection_id: "/topics/" + sticker_uuid,
-                sender_id:uuid.v4(),//maybe change to static uuid
-                message_id: uuid.v4(),
-                message_type: 4,
-                sender_role:0,
-                payload: JSON.stringify( responsejson ),
-                payload_format_type:0
+                sender_role: 0,
+                payload: JSON.stringify(responsejson),
+                payload_format_type: 0
             };
-            vm.sendPayload( responsePayload ).success(
-                $http.post(vm.endpoint + 'responses/',JSON.stringify(responsejson))     //this line! move down 1?
-                .then(
+            vm.sendPayload(responsePayload).success(
+                $http.post(vm.endpoint + 'responses/', JSON.stringify(responsejson)).then(
                     function success(response) {
                         vm.responses = response.data;
                         vm.hasResponded = true;
-                        vm.giveThanks=true;
+                        vm.giveThanks = true;
                         console.info(response);
                     },
                     function failure(err) {
                         console.error(err);
                     }))
-                .error(function(err){
+                .error(function (err) {
                     alert("fcm down! whoops!");
                     console.log(err);
-                })                
+                })
+            //)
+
+        };//get UUIDshould change apologyRec to true; change apologyPN to 1
+
+
+
+
+
+
+        vm.refuse = function ()//should change apologyRec to true; change apologyPN to -1
+        {
+            var z = true;
+            var urlParams = new URLSearchParams(window.location.search);
+            var sticker_uuid = urlParams.get('uuid'); //getus uuid from url
+
+            var responsejson = { "has_apologised": true, "sticker_uuid": sticker_uuid, "apologyRec": true, "apologyPN": -1 };
+            //Use $http service to send get request to API and execute different functions depending on whether it is successful or not
+
+            var responsePayload = {
+                connection_id: "/topics/" + sticker_uuid,
+                sender_id: uuid.v4(),//maybe change to static uuid
+                message_id: uuid.v4(),
+                message_type: 4,
+                sender_role: 0,
+                payload: JSON.stringify(responsejson),
+                payload_format_type: 0
+            };
+            vm.sendPayload(responsePayload).then(
+                function success(response) {
+                    $http.post(vm.endpoint + 'responses/', JSON.stringify(responsejson))     //this line! move down 1?
+                        .then(
+                            function success(response) {
+                                vm.responses = response.data;
+                                vm.hasResponded = true;
+                                vm.giveThanks = true;
+                                console.info(response);
+                            },
+                            function failure(err) {
+                                console.error(err);
+                            })
+                },
+                function failure(err) {
+                    alert("fcm down! whoops!");
+                    console.log(err);
+                });
             //)
 
 
-        }    
+        }
 
-        vm.sendPayload = function sendPayload( payload ) {
+        vm.sendPayload = function sendPayload(payload) {
             const SERVER_ROOT = "https://rescuestationpush.herokuapp.com:443"; // heroku service hides secret
 
-            console.log( " → asked to send this payload:", payload );
-          
-            var sendRequest = { method: 'POST',
-                                   url: SERVER_ROOT + '/messages',
-                                data: JSON.stringify(payload)
-                                  };
-          
-             console.log('push.service.sendPayload - using ',sendRequest );
-          
-            return $http( sendRequest ); // send back a promise
+            console.log(" → asked to send this payload:", payload);
+
+            var sendRequest = {
+                method: 'POST',
+                url: SERVER_ROOT + '/messages',
+                data: JSON.stringify(payload)
+            };
+
+            console.log('push.service.sendPayload - using ', sendRequest);
+
+            return $http(sendRequest); // send back a promise
         };
 
 
-        
+
         vm.init();
     }
 
