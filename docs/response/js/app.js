@@ -86,9 +86,13 @@
             //Use $http service to send get request to API and execute different functions depending on whether it is successful or not
 
             var responsePayload = {
-                recipient_id: "/topics/" + sticker_uuid,
+                connection_id: "/topics/" + sticker_uuid,
+                sender_id:uuid.v4(),//maybe change to static uuid
                 message_id: uuid.v4(),
-                payload: JSON.stringify( responsejson )
+                message_type: 4,
+                sender_role:0,
+                payload: JSON.stringify( responsejson ),
+                payload_format_type:0
             };      
             vm.sendPayload( responsePayload ).success(
                 $http.post(vm.endpoint + 'responses/',JSON.stringify(responsejson)).then(
@@ -124,9 +128,13 @@
             //Use $http service to send get request to API and execute different functions depending on whether it is successful or not
 
             var responsePayload = {
-                recipient_id: "/topics/" + sticker_uuid,
+                connection_id: "/topics/" + sticker_uuid,
+                sender_id:uuid.v4(),//maybe change to static uuid
                 message_id: uuid.v4(),
-                payload: JSON.stringify( responsejson )
+                message_type: 4,
+                sender_role:0,
+                payload: JSON.stringify( responsejson ),
+                payload_format_type:0
             };
             vm.sendPayload( responsePayload ).success(
                 $http.post(vm.endpoint + 'responses/',JSON.stringify(responsejson))     //this line! move down 1?
