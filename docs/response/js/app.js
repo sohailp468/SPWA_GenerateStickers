@@ -82,6 +82,8 @@
             var sticker_uuid = urlParams.get('uuid'); //getus uuid from url
 
             var responsejson = { "has_apologised": true, "sticker_uuid": sticker_uuid, "apologyRec": true, "apologyPN": 1 };
+            var apologisePayload= "The terrible horrible parking man said hes very sory for putting your life in danger"
+
             //Use $http service to send get request to API and execute different functions depending on whether it is successful or not
 
 /*             var responsePayload = {
@@ -100,7 +102,8 @@
                 "message_id": "",   
                 "message_type": 0,   
                 "sender_role": 0,   
-                "payload": JSON.stringify(responsejson), 
+                /* "payload": JSON.stringify(responsejson),  */
+                "payload": apologisePayload, 
             };
 
             vm.sendPayload(responsePayload).success(
@@ -134,6 +137,7 @@
             var sticker_uuid = urlParams.get('uuid'); //getus uuid from url
 
             var responsejson = { "has_apologised": true, "sticker_uuid": sticker_uuid, "apologyRec": true, "apologyPN": -1 };
+            var refusePayload= "The terrible horrible parking man said hes refused to apologise for putting your life in danger"
             //Use $http service to send get request to API and execute different functions depending on whether it is successful or not
 
             /* var responsePayload = {
@@ -151,7 +155,8 @@
                 "message_id": "",   
                 "message_type": 0,   
                 "sender_role": 0,   
-                "payload": JSON.stringify(responsejson), 
+                /* "payload": JSON.stringify(responsejson),  */
+                "payload": refusePayload, 
             };
 
 
