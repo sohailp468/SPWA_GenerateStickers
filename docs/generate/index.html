@@ -35,7 +35,7 @@
     </form></div>
     <!-- bound this list to the array containing stickers in data model -->
       <li ng-repeat="sticker in vm.stickers" >
-        <qrcode data="https://cerealsuperhero.github.io/SPWA_GenerateStickers/response/?uuid={{sticker.id}}"></qrcode>
+        <qrcode data="https://cerealsuperhero.github.io/SPWA_GenerateStickers/response/?uuid={{sticker.id}}&endpoint=https://anti-parking-api.herokuapp.com/"></qrcode>
         <p>url: https://cerealsuperhero.github.io/SPWA_GenerateStickers/response/?uuid={{sticker.id}}</p>
       </li>
     </ul>
