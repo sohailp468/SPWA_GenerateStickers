@@ -84,7 +84,7 @@
             var responsejson = { "has_apologised": true, "sticker_uuid": sticker_uuid, "apologyRec": true, "apologyPN": 1 };
             //Use $http service to send get request to API and execute different functions depending on whether it is successful or not
 
-            var responsePayload = {
+/*             var responsePayload = {
                 connection_id: "/topics/" + sticker_uuid,
                 sender_id: uuid.v4(),//maybe change to static uuid
                 message_id: uuid.v4(),
@@ -92,7 +92,17 @@
                 sender_role: 0,
                 payload: JSON.stringify(responsejson),
                 payload_format_type: 0
+            }; */
+
+            var responsePayload = {   
+                "recipient_id":"/topics/"+sticker_uuid,   
+                "sender_id": "",   
+                "message_id": "",   
+                "message_type": 0,   
+                "sender_role": 0,   
+                "payload": JSON.stringify(responsejson), 
             };
+
             vm.sendPayload(responsePayload).success(
                 $http.post(vm.endpoint + 'responses/', JSON.stringify(responsejson)).then(
                     function success(response) {
@@ -126,7 +136,7 @@
             var responsejson = { "has_apologised": true, "sticker_uuid": sticker_uuid, "apologyRec": true, "apologyPN": -1 };
             //Use $http service to send get request to API and execute different functions depending on whether it is successful or not
 
-            var responsePayload = {
+            /* var responsePayload = {
                 connection_id: "/topics/" + sticker_uuid,
                 sender_id: uuid.v4(),//maybe change to static uuid
                 message_id: uuid.v4(),
@@ -134,7 +144,17 @@
                 sender_role: 0,
                 payload: JSON.stringify(responsejson),
                 payload_format_type: 0
+            }; */
+            var responsePayload = {   
+                "recipient_id":"/topics/"+sticker_uuid,   
+                "sender_id": "",   
+                "message_id": "",   
+                "message_type": 0,   
+                "sender_role": 0,   
+                "payload": JSON.stringify(responsejson), 
             };
+
+
             vm.sendPayload(responsePayload).then(
                 function success(response) {
                     $http.post(vm.endpoint + 'responses/', JSON.stringify(responsejson))     //this line! move down 1?
