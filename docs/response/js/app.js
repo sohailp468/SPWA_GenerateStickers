@@ -155,7 +155,7 @@
                 "message_id": "",   
                 "message_type": 0,   
                 "sender_role": 0,   
-                "payload": "{The terrible horrible parking man has refused to apologise for putting your life in danger}"
+                "payload": "{\"RESPONSE\":\"The terrible horrible parking man has refused to apologise for putting your life in danger\"}"
             };
                 /* "payload": JSON.stringify(responsejson),  */
 
