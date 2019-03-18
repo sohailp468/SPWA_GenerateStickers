@@ -82,7 +82,7 @@
             var sticker_uuid = urlParams.get('uuid'); //getus uuid from url
 
             var responsejson = { "has_apologised": true, "sticker_uuid": sticker_uuid, "apologyRec": true, "apologyPN": 1 };
-            var apologisePayload= "The terrible horrible parking man said hes very sory for putting your life in danger"
+            var apologisePayload= "The terrible horrible parking man said hes very sory for putting your life in danger";
 
             //Use $http service to send get request to API and execute different functions depending on whether it is successful or not
 
@@ -137,7 +137,7 @@
             var sticker_uuid = urlParams.get('uuid'); //getus uuid from url
 
             var responsejson = { "has_apologised": true, "sticker_uuid": sticker_uuid, "apologyRec": true, "apologyPN": -1 };
-            var refusePayload= "The terrible horrible parking man said hes refused to apologise for putting your life in danger"
+            var refusePayload= "The terrible horrible parking man said hes refused to apologise for putting your life in danger";
             //Use $http service to send get request to API and execute different functions depending on whether it is successful or not
 
             /* var responsePayload = {
