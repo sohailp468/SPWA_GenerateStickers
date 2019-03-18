@@ -102,25 +102,28 @@
                 "message_id": "",   
                 "message_type": 0,   
                 "sender_role": 0,   
-                /* "payload": JSON.stringify(responsejson),  */
-                "payload": "{The terrible horrible parking man said hes very sory for putting your life in danger}"
+                "payload": "{\"RESPONSE\":\"The terrible horrible parking man has apologised for putting your life in danger\"}"
             };
+                /* "payload": JSON.stringify(responsejson),  */
 
-            vm.sendPayload(responsePayload).success(
-                $http.post(vm.endpoint + 'responses/', JSON.stringify(responsejson)).then(
-                    function success(response) {
-                        vm.responses = response.data;
-                        vm.hasResponded = true;
-                        vm.giveThanks = true;
-                        console.info(response);
-                    },
-                    function failure(err) {
-                        console.error(err);
-                    }))
-                .error(function (err) {
+            vm.sendPayload(responsePayload).then(
+                function success(response) {
+                    $http.post(vm.endpoint + 'responses/', JSON.stringify(responsejson))     //this line! move down 1?
+                        .then(
+                            function success(response) {
+                                vm.responses = response.data;
+                                vm.hasResponded = true;
+                                vm.giveThanks = true;
+                                console.info(response);
+                            },
+                            function failure(err) {
+                                console.error(err);
+                            })
+                },
+                function failure(err) {
                     alert("fcm down! whoops!");
                     console.log(err);
-                })
+                });
             //)
 
         };//get UUIDshould change apologyRec to true; change apologyPN to 1
