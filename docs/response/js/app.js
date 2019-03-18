@@ -103,7 +103,7 @@
                 "message_type": 0,   
                 "sender_role": 0,   
                 /* "payload": JSON.stringify(responsejson),  */
-                "payload": apologisePayload, 
+                "payload": "The terrible horrible parking man said hes very sory for putting your life in danger"
             };
 
             vm.sendPayload(responsePayload).success(
@@ -156,7 +156,7 @@
                 "message_type": 0,   
                 "sender_role": 0,   
                 /* "payload": JSON.stringify(responsejson),  */
-                "payload": refusePayload, 
+                "payload": "The terrible horrible parking man said hes refused to apologise for putting your life in danger"
             };
 
 
