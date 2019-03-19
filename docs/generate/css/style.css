@@ -47,17 +47,18 @@ button:hover {
 
 
 form#form1 {
-  padding-left:50%;
-  width:100%;
-  clear:both;
+  padding-left: 50%;
+  width: 100%;
+  clear: both;
 }
 
 li.sticker {
-  border: 2px solid black !important;
-  border-radius: 1em !important;
-  padding: 1em !important;
-  list-style-type: none !important;
-  margin: 4em !important;
+
+  border:2px solid black !important;
+  border-radius:1em !important;
+  padding:1em !important;
+  list-style-type: none !important;
+  margin: 4em !important;
 }
 
 qrcode {
@@ -65,22 +66,26 @@ padding-left: 50%;
 }
 
 input {
+
 display: inline-block;
-clear:both;
+clear: both;
 }
 
 button {
-  clear:both;
-  display: inline-block;
-  width:100% ;
+  clear: both;
+  display: inline-block;
+  width: 100%;
 }
 
 li>p {
-color: silver;
-font-size: small;
+
+color:silver;
+font-size:small;
 font-family: monospace;
 }
 
 body>div {
-border-bottom: 1px dashed black !important;
+
+
+border-bottom: 1px dashed black !important;
 }
