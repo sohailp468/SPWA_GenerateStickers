@@ -70,7 +70,7 @@ form#form1 {
   clear:both;
 }
 
-li {
+li.sticker {
   border: 2px solid black !important;
   border-radius: 1em !important;
   padding: 1em !important;

@@ -34,7 +34,7 @@
       <button ng-click="vm.postStickers()">Generate Stickers</button> <!--POST-->
     </form></div>
     <!-- bound this list to the array containing stickers in data model -->
-      <li ng-repeat="sticker in vm.stickers" >
+      <li class="sticker" ng-repeat="sticker in vm.stickers" >
         <qrcode data="https://cerealsuperhero.github.io/SPWA_GenerateStickers/response/?&uuid={{sticker.id}}&parkapi=anti-parking-api.herokuapp&pushapi=rescuestationpush"></qrcode>
         <p>url: https://cerealsuperhero.github.io/SPWA_GenerateStickers/response/?&uuid={{sticker.id}}&parkapi=anti-parking-api.herokuapp&pushapi=rescuestationpush</p>
       </li>
