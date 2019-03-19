@@ -93,12 +93,12 @@ button {
   width:100% ;
 }
 
-li>p {
+li p {
 color: silver;
 font-size: small;
 font-family: monospace;
 }
 
-body>div {
+body div {
 border-bottom: 1px dashed black;
 }
