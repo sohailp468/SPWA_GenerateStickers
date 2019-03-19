@@ -79,7 +79,9 @@
         vm.apologise = function () {
             var z = true;
             var urlParams = new URLSearchParams(window.location.search);
-            var sticker_uuid = urlParams.get('uuid'); //getus uuid from url
+            var sticker_uuid = urlParams.get('uuid'); //gets uuid from url
+            var parkapi = "https://" + urlParams.get('parkapi') + ".com/"; //gets park api from url
+            
 
             var responsejson = { "has_apologised": true, "sticker_uuid": sticker_uuid, "apologyRec": true, "apologyPN": 1 };
             var apologisePayload= "The terrible horrible parking man said hes very sory for putting your life in danger";
@@ -108,7 +110,7 @@
 
             vm.sendPayload(responsePayload).then(
                 function success(response) {
-                    $http.post(vm.endpoint + 'responses/', JSON.stringify(responsejson))     //this line! move down 1?
+                    $http.post(parkapi + 'responses/', JSON.stringify(responsejson))     //this line! move down 1?
                         .then(
                             function success(response) {
                                 vm.responses = response.data;
@@ -138,6 +140,9 @@
             var z = true;
             var urlParams = new URLSearchParams(window.location.search);
             var sticker_uuid = urlParams.get('uuid'); //getus uuid from url
+            var parkapi = "https://" + urlParams.get('parkapi') + ".com/"; //getus uuid from url
+            //var push_endpoint = urlParams.get('pushdomain'); //getus uuid from url
+
 
             var responsejson = { "has_apologised": true, "sticker_uuid": sticker_uuid, "apologyRec": true, "apologyPN": -1 };
             var refusePayload= "The terrible horrible parking man said hes refused to apologise for putting your life in danger";
@@ -164,7 +169,7 @@
 
             vm.sendPayload(responsePayload).then(
                 function success(response) {
-                    $http.post(vm.endpoint + 'responses/', JSON.stringify(responsejson))     //this line! move down 1?
+                    $http.post(parkapi + 'responses/', JSON.stringify(responsejson))     //this line! move down 1?
                         .then(
                             function success(response) {
                                 vm.responses = response.data;
@@ -186,7 +191,9 @@
         }
 
         vm.sendPayload = function sendPayload(payload) {
-            const SERVER_ROOT = "https://rescuestationpush.herokuapp.com:443"; // heroku service hides secret
+            var urlParams = new URLSearchParams(window.location.search);
+            var pushapi = urlParams.get('pushapi'); //gets push api from url
+            const SERVER_ROOT = "https://" +pushapi + ".herokuapp.com:443"; // heroku service hides secret
 
             console.log(" → asked to send this payload:", payload);
 
@@ -200,6 +207,11 @@
 
             return $http(sendRequest); // send back a promise
         };
+
+
+
+
+
 
 
 
