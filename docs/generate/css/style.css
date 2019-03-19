@@ -40,24 +40,6 @@ button:hover {
   cursor: pointer;
 }
 
-ul {
-  list-style-type: none;
-  width: 50%;
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-ul li {
-  padding: 20px;
-  margin-bottom: 10px;
-  background-color: #eeeeee;
-}
-
-ul li p {
-  margin-bottom: 5px;
-}
 
 
 
