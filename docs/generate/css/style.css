@@ -71,11 +71,11 @@ form#form1 {
 }
 
 li {
-  border: 2px solid black;
-  border-radius: 1em;
-  padding: 1em;
-  list-style-type: none;
-  margin: 4em;
+  border: 2px solid black !important;
+  border-radius: 1em !important;
+  padding: 1em !important;
+  list-style-type: none !important;
+  margin: 4em !important;
 }
 
 qrcode {
@@ -100,5 +100,5 @@ font-family: monospace;
 }
 
 body>div {
-border-bottom: 1px dashed black;
+border-bottom: 1px dashed black !important;
 }
