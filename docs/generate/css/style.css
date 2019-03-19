@@ -30,6 +30,9 @@ button {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  clear: both;
+  display: inline-block;
+  width:100%;
 }
 
 button:hover {
@@ -54,4 +57,48 @@ ul li {
 
 ul li p {
   margin-bottom: 5px;
+}
+
+
+
+
+
+
+form#form1 {
+  padding-left:50%;
+  width:100%;
+  clear: both;
+}
+
+li {
+  border: 2px solid black;
+  border-radius: 1em;
+  padding: 1em;
+  list-style-type: none;
+  margin: 4em;
+}
+
+qrcode {
+padding-left: 50%;
+}
+
+input {
+display: inline-block;
+clear:both;
+}
+
+button {
+  clear: both;
+  display: inline-block;
+  width:100% ;
+}
+
+li>p {
+color: silver;
+font-size: small;
+font-family: monospace;
+}
+
+body>div {
+border-bottom: 1px dashed black;
 }
