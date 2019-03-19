@@ -27,7 +27,7 @@ button {
   margin: 20px;
   box-shadow: 0px 0px 7px black;
   transition: background-color 0.2s linear;
-  position: absolute;
+  position: initial;
   left: 50%;
   transform: translateX(-50%);
   clear: both;
@@ -67,7 +67,7 @@ ul li p {
 form#form1 {
   padding-left:50%;
   width:100%;
-  clear: both;
+  clear:both;
 }
 
 li {
@@ -88,17 +88,17 @@ clear:both;
 }
 
 button {
-  clear: both;
+  clear:both;
   display: inline-block;
   width:100% ;
 }
 
-li p {
+li>p {
 color: silver;
 font-size: small;
 font-family: monospace;
 }
 
-body div {
+body>div {
 border-bottom: 1px dashed black;
 }
