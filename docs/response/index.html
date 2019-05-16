@@ -12,6 +12,7 @@
     <script type="text/javascript" src="lib/qrcode/qrcode.js"></script>
     <script type="text/javascript" src="lib/qrcode/angular-qrcode.js"></script>
     <script src="lib/uuid/angular-uuid.js" ></script>
+    <script src="lib/instascan/instascan.min.js"></script>
 
     <link rel="stylesheet" href="css/style.css">
 
@@ -23,9 +24,18 @@
   <body ng-app="anti_park_spwa" ng-controller="Main as vm">
 
 
+
     <h1>Show You Care Park Elsewhere</h1>
-    <p>You parked without care! Someone is really bummed out :-( </p>
+    
     <!-- <p>we have {{vm.stickers.length}} stickers</p> -->
+
+    <!--video element must have autoplay otherwise nothing shows up on screen when you press the button-->
+    <video muted autoplay id="qr-video" style="transform: scaleX(-1);"></video>
+
+    <!--bind button click event to function in data model-->
+    
+    <button ng-click="vm.scanQRcode()" ng-show="vm.hasParams===false">Scan QR code</button>
+    <p>You parked without care! Someone is really bummed out :-( </p>
     <div ng-show="vm.hasResponded===false">
       <p>Apologise?</p>
       <form id="form1" >

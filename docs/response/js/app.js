@@ -20,8 +20,57 @@
             events: [],
             endpoint: '',
             hasResponded: false,
-            giveThanks: false
+            giveThanks: false,
+            hasparams:false,
+
+            //new code
+        //add scanner object to data model
+        scanner: new Instascan.Scanner({
+            video: document.getElementById('qr-video'),
+            continious: true,
+            scanPeriod: 5,
+            backgroundScan: false,
+            refactoryPeriod: 3000
+        })
         });
+
+        var urlParams = new URLSearchParams(window.location.search);
+        if(urlParams.get.uuid==null)
+        {
+            vm.hasResponded=true;
+            vm.hasParams=false;
+        }
+        else
+        {
+            vm.hasParams=true;
+        }
+        vm.scanner.addListener('scan',function(content)
+        {
+            //alert(content);
+            //console.log(content);
+            //window.location.href(content);
+            //stop the scanner as it should only scan one QRcode each time
+            vm.scanner.stop();
+            console.log(content);
+            window.location.href=content;
+        });
+
+        vm.scanQRcode=function(){
+            //get a camera, pass it into the start of the scanner object in the data model (defined above)
+            //this will start the camera, show the video feed on the page and start scanning for a QRcode
+            Instascan.Camera.getCameras().then(function(cameras){
+                if(cameras.length>0)
+                {
+                    vm.scanner.start(cameras[0]);
+                    console.log("started scanner");
+                }
+                else{
+                    console.error("No cameras found.");
+                }
+            }).catch(function (e){
+                console.error(e);
+            });
+        }
 
         vm.init = function () {
             // get the endpoint from the config file
@@ -29,12 +78,15 @@
                 function success(response) {
                     vm.endpoint = response.data.endpoint;
                     console.info(response.data);
+                    
                 },
                 function failure(err) {
-                    console.err(err);
+                    console.error(err);
                 }
             )
         }
+
+        
 
         /* vm.getData = function () {
             // Using an unauthenticated API here
