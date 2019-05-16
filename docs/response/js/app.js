@@ -35,7 +35,7 @@
         });
 
         var urlParams = new URLSearchParams(window.location.search);
-        if(urlParams.get.uuid==null)
+        if(urlParams.get('uuid')==null)
         {
             vm.hasResponded=true;
             vm.hasParams=false;
