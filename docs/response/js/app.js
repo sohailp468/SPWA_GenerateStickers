@@ -33,9 +33,17 @@
             refactoryPeriod: 3000
         })
         });
+        
 
-        var urlParams = new URLSearchParams(window.location.search);
-        if(urlParams.get('uuid')==null)
+            var urlParams = new URLSearchParams(window.location.search);
+            var sticker_uuid = urlParams.get('uuid'); //gets uuid from url
+
+
+
+        
+
+        //var urlParams = new URLSearchParams(window.location.search);
+        if(sticker_uuid==null)
         {
             vm.hasResponded=true;
             vm.hasParams=false;
@@ -43,6 +51,7 @@
         else
         {
             vm.hasParams=true;
+            vm.hasResponded=false;
         }
         vm.scanner.addListener('scan',function(content)
         {
