@@ -9,34 +9,21 @@ h1 {
   text-align: center;
   padding-top: 20px;
   padding-bottom: 20px;
+  color: black;
 }
 h2 {
   text-align: center;
   padding-bottom: 20px;
+  color:black;
 }
 p{
   padding-bottom: 5px;
+  margin-left:10px;
+  margin-bottom:10px;
 }
-button {
-  background: none;
-  border: none;
-  padding: 20px;
-  font-size: 16px;
-  background-color: #155BB4;
-  color: white;
-  margin: 20px;
-  box-shadow: 0px 0px 7px black;
-  transition: background-color 0.2s linear;
-  position: initial;
-  left: 50%;
-  transform: translateX(-50%);
-  clear: both;
-  display: inline-block;
-  width:100%;
-}
-
-button:hover {
-  background-color: #2a76da;
+form#form1>button:hover{
+  
+  background-color: #1FEFFF;
   cursor: pointer;
 }
 
@@ -46,10 +33,27 @@ button:hover {
 
 
 
-form#form1 {
-  padding-left: 50%;
-  width: 100%;
-  clear: both;
+form#form1>p {
+ 
+float:left;
+margin-right:20px;
+margin-top:10px;
+}
+
+form#form1>button{
+  background: none;
+  border:none;
+  font-size:16px;
+  width:200px;
+  background-color:#155BB4;
+  color:white;
+  box-shadow:0px 0px 7px black;
+  border-radius: 3px;
+  display:inline-block;
+  padding-top:5px;
+  padding-bottom: 5px;
+  margin:5px;
+  
 }
 
 li.sticker {
@@ -58,24 +62,31 @@ li.sticker {
   border-radius:1em !important;
   padding:1em !important;
   list-style-type: none !important;
-  margin: 4em !important;
+  margin-left: 25% !important;
+  margin-right:35% !important;
+  margin-top:20px;
+  margin-bottom:20px;
+  background-color:white;
+  width:500px;
+  
 }
 
 qrcode {
-padding-left: 50%;
+padding-left: 40%;
 }
 
-input {
+form#form1>input {
 
-display: inline-block;
-clear: both;
+  border-radius: 3px;
+  display:inline-block;
+  padding-top:5px;
+  padding-bottom: 5px;
+  margin:5px;
+ font-size:16px;
+ text-align:center;
+ width:200px;
 }
 
-button {
-  clear: both;
-  display: inline-block;
-  width: 100%;
-}
 
 li>p {
 
@@ -88,4 +99,18 @@ body>div {
 
 
 border-bottom: 1px dashed black !important;
+}
+
+body{
+  background-color: #FFEC6A;
+}
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+  margin-top:20px;
+  margin-bottom:20px;
+  border: solid black 6px;
+  border-radius: 10px;
 }

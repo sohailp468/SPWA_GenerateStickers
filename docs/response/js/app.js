@@ -35,33 +35,29 @@
         });
         
 
-            var urlParams = new URLSearchParams(window.location.search);
-            var sticker_uuid = urlParams.get('uuid'); //gets uuid from url
+        var urlParams = new URLSearchParams(window.location.search);
+        var sticker_uuid = urlParams.get('uuid'); //gets uuid from url
 
 
 
         
 
-        //var urlParams = new URLSearchParams(window.location.search);
+        //if there are no parameters in the url
         if(sticker_uuid==null)
         {
-            vm.hasResponded=true;
-            vm.hasParams=false;
+            vm.hasResponded=true;   //hide the response buttons
+            vm.hasParams=false;     //show the scanner button
         }
         else
         {
-            vm.hasParams=true;
-            vm.hasResponded=false;
+            vm.hasParams=true;      //hide the scanner button
+            vm.hasResponded=false;  //show the response button
         }
         vm.scanner.addListener('scan',function(content)
         {
-            //alert(content);
-            //console.log(content);
-            //window.location.href(content);
-            //stop the scanner as it should only scan one QRcode each time
-            vm.scanner.stop();
-            console.log(content);
-            window.location.href=content;
+            vm.scanner.stop();//stop the scanner when a code is scanned
+            console.log(content);//display the scanned code in the log
+            window.location.href=content;//redirect to the link from the code (should be the response page again but this time with parameters)
         });
 
         vm.scanQRcode=function(){
@@ -85,8 +81,8 @@
             // get the endpoint from the config file
             $http.get('config.json').then(
                 function success(response) {
-                    vm.endpoint = response.data.endpoint;
-                    console.info(response.data);
+                    vm.endpoint = response.data.endpoint; //set the endpoint
+                    console.info(response.data); //display the endpoint in the log
                     
                 },
                 function failure(err) {
@@ -95,96 +91,46 @@
             )
         }
 
-        
+    
 
-        /* vm.getData = function () {
-            // Using an unauthenticated API here
-            // Use $http service to send get request to API and execute different functions depending on whether it is successful or not
-            $http.get(vm.endpoint + 'incidents/16d5b9d9-77a8-4709-bfc7-a080512af177').then(
-                function success(response) {
-                    vm.incident = response.data;
-                    console.info(response);
-                },
-                function failure(err) {
-                    console.error(err);
-                }
-            )
-        };
-
-        vm.postStickers = function () {
-            // Using an unauthenticated API here
-            var x = document.getElementById("form1");
-            var y= "";
-            y = x.elements[0].value;
-            var z = parseInt(y);
-            var jsonpayload={"num_requested":z};
-            
-             //Use $http service to send get request to API and execute different functions depending on whether it is successful or not
-            $http.post(vm.endpoint + 'stickers/',JSON.stringify(jsonpayload)).then(
-                function success(response) {
-                    while(vm.stickers.length>0) {
-                        vm.stickers.pop();
-                    }
-                    for (var i in response.data) {
-                        vm.stickers.push(response.data[i]);
-                    }
-                    //vm.stickers = response.data;
-                    console.log("vm.stickers: ",vm.stickers.length)
-                    console.info(response);
-                },
-                function failure(err) {
-                    console.error(err);
-                }
-            )
-        }; */
         vm.apologise = function () {
             var z = true;
-            var urlParams = new URLSearchParams(window.location.search);
+            var urlParams = new URLSearchParams(window.location.search);//make urlParams a variable with the parameters from the url in it
             var sticker_uuid = urlParams.get('uuid'); //gets uuid from url
-            var parkapi = "https://" + urlParams.get('parkapi') + ".com/"; //gets park api from url
+            var parkapi = "https://" + urlParams.get('parkapi') + ".com/"; //gets park api from urlParams
             
 
-            var responsejson = { "has_apologised": true, "sticker_uuid": sticker_uuid, "apologyRec": true, "apologyPN": 1 };
+            var responsejson = { "has_apologised": true, "sticker_uuid": sticker_uuid, "apologyRec": true, "apologyPN": 1 }; //creates the response json string
             var apologisePayload= "The terrible horrible parking man said hes very sory for putting your life in danger";
 
             //Use $http service to send get request to API and execute different functions depending on whether it is successful or not
 
-/*             var responsePayload = {
-                connection_id: "/topics/" + sticker_uuid,
-                sender_id: uuid.v4(),//maybe change to static uuid
-                message_id: uuid.v4(),
-                message_type: 4,
-                sender_role: 0,
-                payload: JSON.stringify(responsejson),
-                payload_format_type: 0
-            }; */
-
+            //creates the response payload to send to the parkapi to create a push notification response to the user who reported the incident
             var responsePayload = {   
                 "recipient_id":"/topics/"+sticker_uuid,   
                 "sender_id": "",   
                 "message_id": "",   
                 "message_type": 0,   
                 "sender_role": 0,   
-                "payload": "{\"RESPONSE\":\"The terrible horrible parking man has apologised for putting your life in danger\"}"
+                "payload": "{\"RESPONSE\":\"The terrible, horrible parking man has apologised for putting your life in danger\"}"
             };
-                /* "payload": JSON.stringify(responsejson),  */
-
+            //sends the payload to the api
             vm.sendPayload(responsePayload).then(
                 function success(response) {
-                    $http.post(parkapi + 'responses/', JSON.stringify(responsejson))     //this line! move down 1?
+                    $http.post(parkapi + 'responses/', JSON.stringify(responsejson))     //sends the payload to the api
                         .then(
                             function success(response) {
                                 vm.responses = response.data;
-                                vm.hasResponded = true;
-                                vm.giveThanks = true;
-                                console.info(response);
+                                vm.hasResponded = true;//hides the buttons
+                                vm.giveThanks = true;//shows the thankyou message
+                                console.info(response);//shows the server response to the user
                             },
                             function failure(err) {
-                                console.error(err);
+                                console.error(err);//shows error in console
                             })
                 },
                 function failure(err) {
-                    alert("fcm down! whoops!");
+                    alert("fcm down! whoops!");//if the message fails to send, displays an alert
                     console.log(err);
                 });
             //)
@@ -199,25 +145,17 @@
         vm.refuse = function ()//should change apologyRec to true; change apologyPN to -1
         {
             var z = true;
-            var urlParams = new URLSearchParams(window.location.search);
+            var urlParams = new URLSearchParams(window.location.search);//gets the parameters from the url
             var sticker_uuid = urlParams.get('uuid'); //getus uuid from url
-            var parkapi = "https://" + urlParams.get('parkapi') + ".com/"; //getus uuid from url
+            var parkapi = "https://" + urlParams.get('parkapi') + ".com/"; //gets the parjapi from urlParams
             //var push_endpoint = urlParams.get('pushdomain'); //getus uuid from url
 
 
-            var responsejson = { "has_apologised": true, "sticker_uuid": sticker_uuid, "apologyRec": true, "apologyPN": -1 };
+            var responsejson = { "has_apologised": true, "sticker_uuid": sticker_uuid, "apologyRec": true, "apologyPN": -1 }; //creates the response json
             var refusePayload= "The terrible horrible parking man said hes refused to apologise for putting your life in danger";
             //Use $http service to send get request to API and execute different functions depending on whether it is successful or not
 
-            /* var responsePayload = {
-                connection_id: "/topics/" + sticker_uuid,
-                sender_id: uuid.v4(),//maybe change to static uuid
-                message_id: uuid.v4(),
-                message_type: 4,
-                sender_role: 0,
-                payload: JSON.stringify(responsejson),
-                payload_format_type: 0
-            }; */
+            //creates the payload to send to teh push apo that creates a push notification for the user who reported the incident
             var responsePayload = {   
                 "recipient_id":"/topics/"+sticker_uuid,   
                 "sender_id": "",   
@@ -228,32 +166,34 @@
             };
                 /* "payload": JSON.stringify(responsejson),  */
 
+            
+            //sends the payload to the park api which allows the push notification to be sent
             vm.sendPayload(responsePayload).then(
                 function success(response) {
-                    $http.post(parkapi + 'responses/', JSON.stringify(responsejson))     //this line! move down 1?
+                    $http.post(parkapi + 'responses/', JSON.stringify(responsejson))     //sends the responsejson to the park api
                         .then(
                             function success(response) {
-                                vm.responses = response.data;
-                                vm.hasResponded = true;
-                                vm.giveThanks = true;
-                                console.info(response);
+                                vm.responses = response.data;//sets vm.response to match the server response
+                                vm.hasResponded = true;     //hides the response buttons
+                                vm.giveThanks = true;       //shows the thankyou message
+                                console.info(response);     //displays the response in the console
                             },
                             function failure(err) {
-                                console.error(err);
+                                console.error(err);         //shows the error message in the console
                             })
                 },
                 function failure(err) {
-                    alert("fcm down! whoops!");
+                    alert("fcm down! whoops!");             //shows an alert when the message fails to send
                     console.log(err);
                 });
             //)
 
 
         }
-
+        //sends the payload to the push api
         vm.sendPayload = function sendPayload(payload) {
-            var urlParams = new URLSearchParams(window.location.search);
-            var pushapi = urlParams.get('pushapi'); //gets push api from url
+            var urlParams = new URLSearchParams(window.location.search);//gets the parameters from the url
+            var pushapi = urlParams.get('pushapi'); //gets push api from urlParams
             const SERVER_ROOT = "https://" +pushapi + ".herokuapp.com:443"; // heroku service hides secret
 
             console.log(" → asked to send this payload:", payload);
@@ -268,9 +208,6 @@
 
             return $http(sendRequest); // send back a promise
         };
-
-
-
 
 
 
