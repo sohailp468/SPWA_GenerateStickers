@@ -8,43 +8,98 @@
 h1 {
   text-align: center;
   padding-top: 20px;
+  padding-bottom: 20px;
+  color: black;
+  
 }
 
-button {
-  background: none;
-  border: none;
-  padding: 20px;
-  font-size: 16px;
-  background-color: #155BB4;
-  color: white;
-  margin: 20px;
-  box-shadow: 0px 0px 7px black;
-  transition: background-color 0.2s linear;
-  position: relative; 
-  left: 50%; 
-  transform: translateX(-50%);
+h2 {
+  text-align: center;
+  padding-bottom: 20px;
+  color:black;
 }
 
-button:hover {
-  background-color: #2a76da;
+p{
+  padding-bottom: 5px;
+  margin-left:10px;
+  margin-bottom:10px;
+}
+form#form1>button:hover{
+  
+  background-color: #1FEFFF;
   cursor: pointer;
 }
-
-ul {
-  list-style-type: none;
-  width: 50%;
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+form#form1>button#yes{
+  background: none;
+  border:none;
+  font-size:16px;
+  width:200px;
+  background-color:#155BB4;
+  color:white;
+  box-shadow:0px 0px 7px black;
+  border-radius: 3px;
+  display:inline-block;
+  padding-top:5px;
+  padding-bottom: 5px;
+  float:left;
+  margin-left:35%;
+  margin-right:5%;
+  
 }
 
-ul li {
-  padding: 20px;
-  margin-bottom: 10px;
-  background-color: #eeeeee;
+form#form1>button#no{
+  background: none;
+  border:none;
+  font-size:16px;
+  width:200px;
+  background-color:#155BB4;
+  color:white;
+  box-shadow:0px 0px 7px black;
+  border-radius: 3px;
+  display:inline-block;
+  padding-top:5px;
+  padding-bottom: 5px;
+  
+  
 }
 
-ul li p {
-  margin-bottom: 5px;
+
+video#qr-video{
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+button#scan{
+  background: none;
+  border:none;
+  font-size:16px;
+  width:200px;
+  background-color:#155BB4;
+  color:white;
+  box-shadow:0px 0px 7px black;
+  border-radius: 3px;
+  display:block;
+  padding-top:5px;
+  padding-bottom: 5px;
+  margin-top:5px;
+  
+  margin-left:auto;
+  margin-right:auto;
+  
+}
+
+
+body{
+  background-color: #FFEC6A;
+}
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+  margin-top:20px;
+  margin-bottom:20px;
+  border: solid black 6px;
+  border-radius: 10px;
 }

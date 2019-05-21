@@ -56,6 +56,7 @@ form#form1>button{
   
 }
 
+
 li.sticker {
 
   border:2px solid black !important;
@@ -90,10 +91,10 @@ form#form1>input {
 
 li>p {
 
-color:silver;
-font-size:small;
-font-family: monospace;
-}
+  color:silver;
+  font-size:small;
+  font-family: monospace;
+  }
 
 body>div {
 

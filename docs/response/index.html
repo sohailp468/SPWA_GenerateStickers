@@ -27,6 +27,21 @@
 
     <h1>Show You Care Park Elsewhere</h1>
     
+    <img src="../response/css/logo.png"></img>
+    
+
+    <div ng-show="vm.hasResponded===false">
+        <h2>Apologise?</h2>
+      <p>You parked without care! Someone is really bummed out :-( </p>
+      <form id="form1" >
+        <button id="yes"ng-click="vm.apologise()">Yes! I'm really sorry!</button>
+        <button id="no"ng-click="vm.refuse()">No, I don't think so!</button>
+      </form>
+    </div>
+    <div ng-show="vm.giveThanks===true">
+      <p> Thank you for responding</p>
+    </div>
+    
     <!-- <p>we have {{vm.stickers.length}} stickers</p> -->
 
     <!--video element must have autoplay otherwise nothing shows up on screen when you press the button-->
@@ -34,18 +49,7 @@
 
     <!--bind button click event to function in data model-->
     
-    <button ng-click="vm.scanQRcode()" ng-show="vm.hasParams===false">Scan QR code</button>
-    <p>You parked without care! Someone is really bummed out :-( </p>
-    <div ng-show="vm.hasResponded===false">
-      <p>Apologise?</p>
-      <form id="form1" >
-        <button ng-click="vm.apologise()">Yes! I'm really sorry!</button>
-        <button ng-click="vm.refuse()">No, I don't think so!</button>
-      </form>
-    </div>
-    <div ng-show="vm.giveThanks===true">
-      <p> Thank you for responding</p>
-    </div>
+    <button id="scan" ng-click="vm.scanQRcode()" ng-show="vm.hasParams===false">Scan QR code</button>
   </body>
 
 </html>
