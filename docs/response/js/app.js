@@ -64,14 +64,15 @@
             //get a camera, pass it into the start of the scanner object in the data model (defined above)
             //this will start the camera, show the video feed on the page and start scanning for a QRcode
             Instascan.Camera.getCameras().then(function(cameras){
-                if(cameras.length>0)
+                //enumerate available cameras. result displayed in an array
+                if(cameras.length>0)//if any cameras are found
                 {
-                    if(cameras.length==1)
+                    if(cameras.length==1)//check if there is only one camera
                     {
                         vm.scanner.start(cameras[0]);
                         console.log("started scanner");
                     }
-                    else{
+                    else{ //if there is more than one camera open the rear/back camera
                         vm.scanner.start(cameras[1]);
                         console.log("started scanner");
                     }
@@ -79,17 +80,6 @@
                 else{
                     console.error("No cameras found.");
                 } 
-                /* if (cameras.length > 0) {
-                    var selectedCam = cameras[0];
-                    $.each(cameras, (i, c) => {
-                        if (c.name.indexOf('back') != -1) {
-                            selectedCam = c;
-                            return false;
-                        }
-                    });
-                
-                    scanner.start(selectedCam);
-                } */
             }).catch(function (e){
                 console.error(e);
             });
