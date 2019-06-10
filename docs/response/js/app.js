@@ -66,12 +66,30 @@
             Instascan.Camera.getCameras().then(function(cameras){
                 if(cameras.length>0)
                 {
-                    vm.scanner.start(cameras[0]);
-                    console.log("started scanner");
+                    if(cameras.length==1)
+                    {
+                        vm.scanner.start(cameras[0]);
+                        console.log("started scanner");
+                    }
+                    else{
+                        vm.scanner.start(cameras[1]);
+                        console.log("started scanner");
+                    }
                 }
                 else{
                     console.error("No cameras found.");
-                }
+                } 
+                /* if (cameras.length > 0) {
+                    var selectedCam = cameras[0];
+                    $.each(cameras, (i, c) => {
+                        if (c.name.indexOf('back') != -1) {
+                            selectedCam = c;
+                            return false;
+                        }
+                    });
+                
+                    scanner.start(selectedCam);
+                } */
             }).catch(function (e){
                 console.error(e);
             });
