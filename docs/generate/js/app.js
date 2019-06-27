@@ -1,4 +1,4 @@
-(function () {
+ (function () {
 
     'use strict';
 
@@ -18,9 +18,10 @@
             title: 'Welcome to the Sticker App',
             stickers: [],
             events: [],
-            endpoint: ''
+            endpoint: '',
+            
         });
-
+    
         vm.init = function () {
             // get the endpoint from the config file
             $http.get('config.json').then(
@@ -75,6 +76,51 @@
             )
         };
 
+        
+
+        /* vm.printPage=function()
+        {
+            
+            var print_div=document.getElementById("print-area-1");
+           
+
+            var printWin=window.open();
+            
+
+            printWin.document.write('<link rel="stylesheet" type="text/css" href="docs/generate/css/style.css"/>')
+            printWin.document.write(print_div.innerHTML);
+            
+            printWin.document.close();
+            printWin.focus();
+            printWin.print();
+            printWin.close();
+        }  */
+
+        vm.printPage=function()
+        {
+           var id=document.getElementById("non-printable");
+           if (id.style.display==="none"){
+               id.style.display="block";
+               
+               var btn=document.getElementById("btnprint");
+               btn.innerText='PRINT';
+               
+                
+           }
+           else{
+               id.style.display="none";
+               window.print();
+            var btn=document.getElementById("btnprint");
+            btn.innerText='Show Generator';
+           }
+           
+        }
+
+        vm.windowEvent=function()
+        {
+            console.log("Here is an event");
+        }
+    
         vm.init();
     }
 

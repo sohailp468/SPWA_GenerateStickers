@@ -94,13 +94,13 @@ li>p {
   color:silver;
   font-size:small;
   font-family: monospace;
+  
   }
 
-body>div {
-
-
-border-bottom: 1px dashed black !important;
+div#printbtn {
+  border-bottom: 1px dashed black !important;
 }
+
 
 body{
   background-color: #FFEC6A;
@@ -115,3 +115,4 @@ img {
   border: solid black 6px;
   border-radius: 10px;
 }
+
